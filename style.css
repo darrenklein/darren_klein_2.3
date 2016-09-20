@@ -46,3 +46,7 @@ button{
 .clock_part{
 	display: inline-block;
 }
+
+.period{
+	color: #7F7F7F;
+}
