@@ -9,12 +9,15 @@ function tellTime(hours, minutes, seconds){
 	if(timeStyle === "twelve" && hours > 12){
 		hours = hours - 12;
 		document.getElementById("pm").style.color = "#83BBFF";
+		document.getElementById("am").style.color = "#7F7F7F";
 	}
 	else if(timeStyle === "twelve" && hours === 12){
 		document.getElementById("pm").style.color = "#83BBFF";
+		document.getElementById("am").style.color = "#7F7F7F";
 	}
 	else if(timeStyle === "twelve" && hours < 12){
 		document.getElementById("am").style.color = "#83BBFF";
+		document.getElementById("pm").style.color = "#7F7F7F";
 	}
 	else{
 		document.getElementById("am").style.color = "#7F7F7F";
@@ -58,7 +61,7 @@ function hoursChange(element){
 	if(element.getAttribute("hours") === "twentyfour"){
 		timeStyle = "twelve";
 		element.setAttribute("hours", timeStyle);
-		element.innerHTML = "twelve hour";
+		element.innerHTML = "twelve-hour";
 	}
 	else{
 		timeStyle = "twentyfour";
