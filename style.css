@@ -19,6 +19,10 @@ button{
 	cursor: pointer;
 }
 
+button:hover{
+	background-color: #00D366; 
+}
+
 .container{
 	border: solid 4px #7AAEED;
 	border-radius: 10px;
