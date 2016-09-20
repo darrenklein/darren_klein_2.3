@@ -5,23 +5,26 @@ var date = new Date();
 clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
 millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
 
+var lightGreen = "#00FF74";
+var darkGray = "#454545";
+
 function tellTime(hours, minutes, seconds){
 	if(timeStyle === "twelve" && hours > 12){
 		hours = hours - 12;
-		document.getElementById("pm").style.color = "#83BBFF";
-		document.getElementById("am").style.color = "#7F7F7F";
+		document.getElementById("pm").style.color = lightGreen;
+		document.getElementById("am").style.color = darkGray;
 	}
 	else if(timeStyle === "twelve" && hours === 12){
-		document.getElementById("pm").style.color = "#83BBFF";
-		document.getElementById("am").style.color = "#7F7F7F";
+		document.getElementById("pm").style.color = lightGreen;
+		document.getElementById("am").style.color = darkGray;
 	}
 	else if(timeStyle === "twelve" && hours < 12){
-		document.getElementById("am").style.color = "#83BBFF";
-		document.getElementById("pm").style.color = "#7F7F7F";
+		document.getElementById("am").style.color = lightGreen;
+		document.getElementById("pm").style.color = darkGray;
 	}
 	else{
-		document.getElementById("am").style.color = "#7F7F7F";
-		document.getElementById("pm").style.color = "#7F7F7F";
+		document.getElementById("am").style.color = darkGray;
+		document.getElementById("pm").style.color = darkGray;
 	};
 	
 	for(i = 0; i < arguments.length; i++){
