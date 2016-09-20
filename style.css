@@ -1,0 +1,48 @@
+*{
+	box-sizing: border-box;
+	font-family: "Courier New", Courier, monospace;
+}
+
+body{
+	color: #83BBFF;
+	background-color: #262626;
+	margin-top: 20vh;
+}
+
+button{
+	background-color: #00FF74;
+	color: #FFFFFF;
+	border: 0;
+	border-radius: 8px;
+	width: 35vw;
+	font-size: 2vw;
+	cursor: pointer;
+}
+
+.container{
+	border: solid 4px #7AAEED;
+	border-radius: 10px;
+	outline: 2px solid #00FF74;
+	outline-offset: -9px;
+	text-align: center;
+	width: 90%;
+	margin: 0 auto;
+	padding: 38px;
+}
+
+.clock_container{
+	width: 100%;
+}
+
+.clock{
+	font-size: 12vw;
+	width: 75%;
+}
+
+.millisecond{
+	font-size: 4vw;
+}
+
+.clock_part{
+	display: inline-block;
+}
