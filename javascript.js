@@ -57,13 +57,13 @@ function getMilliseconds(milliseconds){
 
 //GETS NEW DATE INFO AND UPDATES THE CLOCK WITH tellTime() EVERY SECOND
 window.setInterval(function(){
-	var date = new Date();
+	date = new Date();
 	clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
 }, 1000);
 
 //GETS NEW DATE INFO AND UPDATES THE CLOCK WITH getMilliseconds() EVERY MILLISECOND
 window.setInterval(function(){
-	var date = new Date();
+	date = new Date();
 	millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
 }, 1);
 
@@ -78,7 +78,6 @@ function hoursChange(element){
 		timeStyle = "twentyfour";
 		element.setAttribute("hours", timeStyle);element.innerHTML = "twenty-four hour";
 	};
-	var date = new Date();
 	clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
 };
 
