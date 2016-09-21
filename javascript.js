@@ -23,23 +23,9 @@ loadClock();
 //THE MAIN TIME-TELLING FUNCTION
 function tellTime(hours, minutes, seconds){
 	//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
-	// if(timeStyle === "twelve" && hours > 12){
-	// 	hours = hours - 12;
-	// 	document.getElementById("pm").style.color = lightGreen;
-	// 	document.getElementById("am").style.color = darkGray;
-	// }
-	// else if(timeStyle === "twelve" && hours === 12){
-	// 	document.getElementById("pm").style.color = lightGreen;
-	// 	document.getElementById("am").style.color = darkGray;
-	// }
-	// else if(timeStyle === "twelve" && hours < 12){
-	// 	document.getElementById("am").style.color = lightGreen;
-	// 	document.getElementById("pm").style.color = darkGray;
-	// }
-	// else{
-	// 	document.getElementById("am").style.color = darkGray;
-	// 	document.getElementById("pm").style.color = darkGray;
-	// };
+	if(timeStyle === "twelve" && hours > 12){
+		hours = hours - 12;
+	};
 	
 	//ADD LEADING ZEROS TO SINGLE-DIGIT NUMBERS
 	for(i = 0; i < arguments.length; i++){
@@ -86,16 +72,28 @@ window.setInterval(function(){
 
 //TOGGLES BETWEEN TWENTY-FOUR AND TWELVE-HOUR TIME DISPLAY
 function hoursChange(element){
+
 	if(element.getAttribute("hours") === "twentyfour"){
 		timeStyle = "twelve";
 		element.setAttribute("hours", timeStyle);
 		element.innerHTML = "twelve-hour";
+
+		//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
+		if(hours >= 12){
+			document.getElementById("pm").style.color = lightGreen;
+			document.getElementById("am").style.color = darkGray;
+		}
+		else{
+			document.getElementById("am").style.color = lightGreen;
+			document.getElementById("pm").style.color = darkGray;
+		};
 	}
 	else{
 		timeStyle = "twentyfour";
 		element.setAttribute("hours", timeStyle);element.innerHTML = "twenty-four hour";
+		document.getElementById("am").style.color = darkGray;
+		document.getElementById("pm").style.color = darkGray;
 	};
-	clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
 };
 
 //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
