@@ -3,31 +3,43 @@ var clock = document.getElementById("clock");
 var millisecondContainer = document.getElementById("millisecond");
 var timeStyle = "twentyfour";
 var date = new Date();
-clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
+var hours = date.getHours();
+var minutes = date.getMinutes();
+var seconds = date.getSeconds();
+
+//clock.innerHTML = tellTime(hours, minutes, seconds);
 millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
 var lightGreen = "#00FF74";
 var darkGray = "#454545";
 
+//CALLS tellTime() AND PASSES RESULT INTO CLOCK DIV
+function loadClock(){
+	clock.innerHTML = tellTime(hours, minutes, seconds);
+}
+
+//SO THAT CLOCK IS RENDERED ON PAGE LOAD
+loadClock();
+
 //THE MAIN TIME-TELLING FUNCTION
 function tellTime(hours, minutes, seconds){
 	//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
-	if(timeStyle === "twelve" && hours > 12){
-		hours = hours - 12;
-		document.getElementById("pm").style.color = lightGreen;
-		document.getElementById("am").style.color = darkGray;
-	}
-	else if(timeStyle === "twelve" && hours === 12){
-		document.getElementById("pm").style.color = lightGreen;
-		document.getElementById("am").style.color = darkGray;
-	}
-	else if(timeStyle === "twelve" && hours < 12){
-		document.getElementById("am").style.color = lightGreen;
-		document.getElementById("pm").style.color = darkGray;
-	}
-	else{
-		document.getElementById("am").style.color = darkGray;
-		document.getElementById("pm").style.color = darkGray;
-	};
+	// if(timeStyle === "twelve" && hours > 12){
+	// 	hours = hours - 12;
+	// 	document.getElementById("pm").style.color = lightGreen;
+	// 	document.getElementById("am").style.color = darkGray;
+	// }
+	// else if(timeStyle === "twelve" && hours === 12){
+	// 	document.getElementById("pm").style.color = lightGreen;
+	// 	document.getElementById("am").style.color = darkGray;
+	// }
+	// else if(timeStyle === "twelve" && hours < 12){
+	// 	document.getElementById("am").style.color = lightGreen;
+	// 	document.getElementById("pm").style.color = darkGray;
+	// }
+	// else{
+	// 	document.getElementById("am").style.color = darkGray;
+	// 	document.getElementById("pm").style.color = darkGray;
+	// };
 	
 	//ADD LEADING ZEROS TO SINGLE-DIGIT NUMBERS
 	for(i = 0; i < arguments.length; i++){
@@ -58,7 +70,12 @@ function getMilliseconds(milliseconds){
 //GETS NEW DATE INFO AND UPDATES THE CLOCK WITH tellTime() EVERY SECOND
 window.setInterval(function(){
 	date = new Date();
-	clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
+	hours = date.getHours();
+	minutes = date.getMinutes();
+	seconds = date.getSeconds();
+	loadClock();
+	//clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
+
 }, 1000);
 
 //GETS NEW DATE INFO AND UPDATES THE CLOCK WITH getMilliseconds() EVERY MILLISECOND
