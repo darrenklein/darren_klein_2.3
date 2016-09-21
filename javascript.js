@@ -78,6 +78,8 @@ function hoursChange(element){
 		timeStyle = "twentyfour";
 		element.setAttribute("hours", timeStyle);element.innerHTML = "twenty-four hour";
 	};
+	var date = new Date();
+	clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
 };
 
 //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
