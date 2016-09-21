@@ -6,15 +6,17 @@ var date = new Date();
 var hours = date.getHours();
 var minutes = date.getMinutes();
 var seconds = date.getSeconds();
+var milliseconds = date.getMilliseconds();
 
 //clock.innerHTML = tellTime(hours, minutes, seconds);
-millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
+//millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
 var lightGreen = "#00FF74";
 var darkGray = "#454545";
 
 //CALLS tellTime() AND PASSES RESULT INTO CLOCK DIV
 function loadClock(){
 	clock.innerHTML = tellTime(hours, minutes, seconds);
+	millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
 }
 
 //SO THAT CLOCK IS RENDERED ON PAGE LOAD
@@ -60,14 +62,13 @@ window.setInterval(function(){
 	minutes = date.getMinutes();
 	seconds = date.getSeconds();
 	loadClock();
-	//clock.innerHTML = tellTime(date.getHours(), date.getMinutes(), date.getSeconds());
-
-}, 1000);
+}, 1);
 
 //GETS NEW DATE INFO AND UPDATES THE CLOCK WITH getMilliseconds() EVERY MILLISECOND
 window.setInterval(function(){
 	date = new Date();
-	millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
+	milliseconds = date.getMilliseconds();
+	millisecondContainer.innerHTML = getMilliseconds(milliseconds);
 }, 1);
 
 //TOGGLES BETWEEN TWENTY-FOUR AND TWELVE-HOUR TIME DISPLAY
