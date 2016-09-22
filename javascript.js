@@ -7,6 +7,7 @@ var hours = date.getHours();
 var minutes = date.getMinutes();
 var seconds = date.getSeconds();
 var milliseconds = date.getMilliseconds();
+var period;
 var lightGreen = "#00FF74";
 var darkGray = "#454545";
 
@@ -26,6 +27,11 @@ function tellTime(hours, minutes, seconds){
 		if(arguments[i].toString().length === 1){
 			arguments[i] = "0" + arguments[i];
 		};
+	};
+
+	//SET DISPLAY BASED ON CLOCK MODE
+	if(timeStyle === "twelve" && hours > 12){
+		hours = hours - 12;
 	};
 
 	//BUILD THE FINAL TIME INPUT
@@ -55,15 +61,22 @@ window.setInterval(function(){
 	seconds = date.getSeconds();
 	milliseconds = date.getMilliseconds();
 
-	//SET DISPLAY BASED ON CLOCK MODE
-	if(timeStyle === "twelve" && hours > 12){
-		hours = hours - 12;
+	if(hours < 12){
+		period = "am";
+	}
+	else{
+		period = "pm";
 	};
 
-	//SET DISPLAY BASED ON CLOCK MODE
-	if(timeStyle === "twelve" && hours >= 12){
-		document.getElementById("pm").style.color = lightGreen;
-		document.getElementById("am").style.color = darkGray;
+	if(timeStyle === "twelve"){
+		if(period === "am"){
+			document.getElementById("am").style.color = lightGreen;
+			document.getElementById("pm").style.color = darkGray;
+		}
+		else{
+			document.getElementById("pm").style.color = lightGreen;
+			document.getElementById("am").style.color = darkGray;
+		};
 	};
 
 	loadClock();
@@ -77,7 +90,7 @@ function hoursChange(element){
 		element.innerHTML = "twelve-hour";
 
 		//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
-		if(hours >= 12){
+		if(period === "pm"){
 			document.getElementById("pm").style.color = lightGreen;
 			document.getElementById("am").style.color = darkGray;
 		}
