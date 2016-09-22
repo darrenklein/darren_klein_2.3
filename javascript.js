@@ -22,16 +22,16 @@ loadClock();
 
 //THE MAIN TIME-TELLING FUNCTION
 function tellTime(hours, minutes, seconds){
+	//SET DISPLAY BASED ON CLOCK MODE
+	if(timeStyle === "twelve" && hours > 12){
+		hours = hours - 12;
+	};
+	
 	//ADD LEADING ZEROS TO SINGLE-DIGIT NUMBERS
 	for(i = 0; i < arguments.length; i++){
 		if(arguments[i].toString().length === 1){
 			arguments[i] = "0" + arguments[i];
 		};
-	};
-
-	//SET DISPLAY BASED ON CLOCK MODE
-	if(timeStyle === "twelve" && hours > 12){
-		hours = hours - 12;
 	};
 
 	//BUILD THE FINAL TIME INPUT
