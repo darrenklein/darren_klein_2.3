@@ -10,6 +10,7 @@ var milliseconds = date.getMilliseconds();
 var period;
 var lightGreen = "#00FF74";
 var darkGray = "#454545";
+var hours_change_button = document.getElementById("hours_change");
 
 //CALLS tellTime() and getMilliseconds() AND PASSES RESULT INTO DIVS
 function loadClock(){
@@ -108,4 +109,4 @@ function hoursChange(element){
 };
 
 //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
-document.getElementById("hours_change").addEventListener("click", function() {hoursChange(this)});
+hours_change_button.onclick = function(){hoursChange(this)};
