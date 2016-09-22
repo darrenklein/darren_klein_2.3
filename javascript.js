@@ -108,4 +108,4 @@ function hoursChange(element){
 };
 
 //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
-document.getElementById("hours_change").addEventListener("click", function(){hoursChange(this)});
+document.getElementById("hours_change").addEventListener("click", function() {hoursChange(this)});
