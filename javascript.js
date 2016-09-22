@@ -7,28 +7,20 @@ var hours = date.getHours();
 var minutes = date.getMinutes();
 var seconds = date.getSeconds();
 var milliseconds = date.getMilliseconds();
-
-//clock.innerHTML = tellTime(hours, minutes, seconds);
-//millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
 var lightGreen = "#00FF74";
 var darkGray = "#454545";
 
-//CALLS tellTime() AND PASSES RESULT INTO CLOCK DIV
+//CALLS tellTime() and getMilliseconds() AND PASSES RESULT INTO DIVS
 function loadClock(){
 	clock.innerHTML = tellTime(hours, minutes, seconds);
-	millisecondContainer.innerHTML = getMilliseconds(date.getMilliseconds());
-}
+	millisecondContainer.innerHTML = getMilliseconds(milliseconds);
+};
 
 //SO THAT CLOCK IS RENDERED ON PAGE LOAD
 loadClock();
 
 //THE MAIN TIME-TELLING FUNCTION
 function tellTime(hours, minutes, seconds){
-	//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
-	if(timeStyle === "twelve" && hours > 12){
-		hours = hours - 12;
-	};
-	
 	//ADD LEADING ZEROS TO SINGLE-DIGIT NUMBERS
 	for(i = 0; i < arguments.length; i++){
 		if(arguments[i].toString().length === 1){
@@ -55,25 +47,30 @@ function getMilliseconds(milliseconds){
 	return milliseconds;
 };
 
-//GETS NEW DATE INFO AND UPDATES THE CLOCK WITH tellTime() EVERY SECOND
+//GETS NEW DATE INFO AND UPDATES THE CLOCK WITH loadClock() EVERY MILLISECOND
 window.setInterval(function(){
 	date = new Date();
 	hours = date.getHours();
 	minutes = date.getMinutes();
 	seconds = date.getSeconds();
-	loadClock();
-}, 1);
-
-//GETS NEW DATE INFO AND UPDATES THE CLOCK WITH getMilliseconds() EVERY MILLISECOND
-window.setInterval(function(){
-	date = new Date();
 	milliseconds = date.getMilliseconds();
-	millisecondContainer.innerHTML = getMilliseconds(milliseconds);
+
+	//SET DISPLAY BASED ON CLOCK MODE
+	if(timeStyle === "twelve" && hours > 12){
+		hours = hours - 12;
+	};
+
+	//SET DISPLAY BASED ON CLOCK MODE
+	if(timeStyle === "twelve" && hours >= 12){
+		document.getElementById("pm").style.color = lightGreen;
+		document.getElementById("am").style.color = darkGray;
+	};
+
+	loadClock();
 }, 1);
 
 //TOGGLES BETWEEN TWENTY-FOUR AND TWELVE-HOUR TIME DISPLAY
 function hoursChange(element){
-
 	if(element.getAttribute("hours") === "twentyfour"){
 		timeStyle = "twelve";
 		element.setAttribute("hours", timeStyle);
