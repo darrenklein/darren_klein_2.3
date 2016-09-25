@@ -10,6 +10,8 @@ var milliseconds = date.getMilliseconds();
 var period;
 var lightGreen = "#00FF74";
 var darkGray = "#454545";
+var am = document.getElementById("am");
+var pm = document.getElementById("pm")
 var hours_change_button = document.getElementById("hours_change");
 
 //CALLS tellTime() and getMilliseconds() AND PASSES RESULT INTO DIVS
@@ -71,12 +73,12 @@ window.setInterval(function(){
 
 	if(timeStyle === "twelve"){
 		if(period === "am"){
-			document.getElementById("am").style.color = lightGreen;
-			document.getElementById("pm").style.color = darkGray;
+			am.style.color = lightGreen;
+			pm.style.color = darkGray;
 		}
 		else{
-			document.getElementById("pm").style.color = lightGreen;
-			document.getElementById("am").style.color = darkGray;
+			pm.style.color = lightGreen;
+			am.style.color = darkGray;
 		};
 	};
 
@@ -92,19 +94,19 @@ function hoursChange(element){
 
 		//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
 		if(period === "pm"){
-			document.getElementById("pm").style.color = lightGreen;
-			document.getElementById("am").style.color = darkGray;
+			pm.style.color = lightGreen;
+			am.style.color = darkGray;
 		}
 		else{
-			document.getElementById("am").style.color = lightGreen;
-			document.getElementById("pm").style.color = darkGray;
+			am.style.color = lightGreen;
+			pm.style.color = darkGray;
 		};
 	}
 	else{
 		timeStyle = "twentyfour";
 		element.setAttribute("hours", timeStyle);element.innerHTML = "twenty-four hour";
-		document.getElementById("am").style.color = darkGray;
-		document.getElementById("pm").style.color = darkGray;
+		am.style.color = darkGray;
+		pm.style.color = darkGray;
 	};
 };
 
