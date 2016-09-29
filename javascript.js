@@ -26,8 +26,14 @@ loadClock();
 //THE MAIN TIME-TELLING FUNCTION
 function tellTime(hours, minutes, seconds){
 	//SET DISPLAY BASED ON CLOCK MODE
-	if(timeStyle === "twelve" && hours > 12){
+	if(timeStyle === "twelve" && hours === 0){
+		hours = 12;
+	}
+	else if(timeStyle === "twelve" && hours > 12){
 		hours = hours - 12;
+	}
+	else{
+		hours = hours;
 	};
 	
 	//ADD LEADING ZEROS TO SINGLE-DIGIT NUMBERS
