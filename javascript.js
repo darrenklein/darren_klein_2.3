@@ -91,12 +91,12 @@ window.setInterval(function(){
 	loadClock();
 }, 1);
 
-//TOGGLES BETWEEN TWENTY-FOUR AND TWELVE-HOUR TIME DISPLAY
+//TOGGLES BETWEEN TWENTY-FOUR AND TWELVE HOUR TIME DISPLAY
 function hoursChange(element){
 	if(element.getAttribute("hours") === "twentyfour"){
 		timeStyle = "twelve";
 		element.setAttribute("hours", timeStyle);
-		element.innerHTML = "twelve-hour";
+		element.innerHTML = "twelve hour";
 
 		//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
 		if(period === "pm"){
