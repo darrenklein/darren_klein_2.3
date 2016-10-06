@@ -137,8 +137,6 @@ var loadClock = function(time){
 	var darkGray = "#454545";
 	var period;
 
-	clockContainer.innerHTML = hours + ":" + minutes + ":" + seconds;
-	millisecondContainer.innerHTML = milliseconds;
 
 	if(hours < 12){
 		var period = "am";
@@ -146,6 +144,19 @@ var loadClock = function(time){
 	else{
 		var period = "pm";
 	};
+
+	//SET DISPLAY BASED ON CLOCK MODE
+	// if(timeStyle === "twelve" && hours === 0){
+	// 	hours = 12;
+	// }
+	// else if(timeStyle === "twelve" && hours > 12){
+	// 	hours = hours - 12;
+	// }
+	// else{
+	// 	hours = hours;
+	// };
+
+	console.log(seconds)
 
 	function hoursChange(element){
 		if(element.getAttribute("hours") === "twentyfour"){
@@ -170,6 +181,10 @@ var loadClock = function(time){
 			pm.style.color = darkGray;
 		};
 	};
+
+
+	clockContainer.innerHTML = hours + ":" + minutes + ":" + seconds;
+	millisecondContainer.innerHTML = milliseconds;
 
 	hours_change_button.onclick = function(){
 		hoursChange(this);
