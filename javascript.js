@@ -124,13 +124,18 @@
 
 var loadClock = function(time){
 	var clockContainer = document.getElementById("clock");
+	var millisecondContainer = document.getElementById("millisecond");
 	var hours_change_button = document.getElementById("hours_change");
 	var am = document.getElementById("am");
 	var pm = document.getElementById("pm");
 	var lightGreen = "#00FF74";
 	var darkGray = "#454545";
+	var period;
 
-	clockContainer.innerHTML = time;
+
+
+	clockContainer.innerHTML = time[0] + ":" + time[1] + ":" + time[2];
+	millisecondContainer.innerHTML = time[3];
 
 	hours_change_button.onclick = function(){
 		
@@ -167,9 +172,9 @@ var getTime = function(){
 			};
 		};
 		
-		return "<div class='main_clock clock_part'>" + hours + ":" + minutes + ":" + seconds + "</div><div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
+		//return "<div class='main_clock clock_part'>" + hours + ":" + minutes + ":" + seconds + "</div><div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
+		return [hours, minutes, seconds, milliseconds]
 	};
-
 
 	return buildTime(hours, minutes, seconds, milliseconds);
 };
