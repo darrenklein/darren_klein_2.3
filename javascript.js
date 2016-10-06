@@ -118,3 +118,39 @@
 
 // //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
 // hours_change_button.onclick = function(){hoursChange(this)};
+
+
+var loadClock = function(time){
+	var clockContainer = document.getElementById("clock");
+
+	clockContainer.innerHTML = time;
+
+	window.setInterval(function(){
+		loadClock(getTime());
+	}, 1);
+};
+
+var getTime = function(){
+	var date = new Date();
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	var seconds = date.getSeconds();
+	var milliseconds = date.getMilliseconds();
+
+	//ADD LEADING ZEROS TO MILLISECONDS
+	if(milliseconds.toString().length === 1){
+		milliseconds = "00" + milliseconds;
+	}
+	else if(milliseconds.toString().length === 2){
+		milliseconds = "0" + milliseconds;
+	}
+	else{
+		milliseconds = milliseconds;
+	};
+
+	var time = hours + ":" + minutes + ":" + seconds + "<div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
+
+	return time;
+};
+
+loadClock(getTime());
