@@ -119,14 +119,26 @@
 // //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
 // hours_change_button.onclick = function(){hoursChange(this)};
 
-var clockContainer = document.getElementById("clock");
+
+
 
 var loadClock = function(time){
+	var clockContainer = document.getElementById("clock");
+	var hours_change_button = document.getElementById("hours_change");
+	var am = document.getElementById("am");
+	var pm = document.getElementById("pm");
+	var lightGreen = "#00FF74";
+	var darkGray = "#454545";
+
 	clockContainer.innerHTML = time;
 
-	window.setInterval(function(){
-		loadClock(getTime());
-	}, 1);
+	hours_change_button.onclick = function(){
+		
+	};
+
+	// window.setInterval(function(){
+	// 	loadClock(getTime());
+	// }, 1);
 };
 
 var getTime = function(){
