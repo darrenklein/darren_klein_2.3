@@ -119,15 +119,16 @@
 // //ADDS A CLICK LISTENER TO THE hours_change BUTTON AND RUNS hoursChange() ON CLICK
 // hours_change_button.onclick = function(){hoursChange(this)};
 
+var clockContainer = document.getElementById("clock");
 
 var loadClock = function(time){
-	var clockContainer = document.getElementById("clock");
+	
 
 	clockContainer.innerHTML = time;
 
-	window.setInterval(function(){
-		loadClock(getTime());
-	}, 1);
+	// window.setInterval(function(){
+	// 	loadClock(getTime());
+	// }, 1);
 };
 
 var getTime = function(){
@@ -137,20 +138,20 @@ var getTime = function(){
 	var seconds = date.getSeconds();
 	var milliseconds = date.getMilliseconds();
 
-	//ADD LEADING ZEROS TO MILLISECONDS
-	if(milliseconds.toString().length === 1){
-		milliseconds = "00" + milliseconds;
-	}
-	else if(milliseconds.toString().length === 2){
-		milliseconds = "0" + milliseconds;
-	}
-	else{
-		milliseconds = milliseconds;
+	function buildTime(hours, minutes, seconds){
+		for(i = 0; i < arguments.length; i++){
+			if(arguments[i].toString().length === 1){
+				arguments[i] = "0" + arguments[i];
+			};
+		};
+
 	};
 
-	var time = hours + ":" + minutes + ":" + seconds + "<div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
 
-	return time;
+	return buildTime(hours, minutes, seconds);
+	//var time = "<div class='main_clock clock_part'>" + hours + ":" + minutes + ":" + seconds + "</div><div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
+
+	//return time;
 };
 
 loadClock(getTime());
