@@ -128,17 +128,51 @@ var loadClock = function(time){
 	var hours_change_button = document.getElementById("hours_change");
 	var am = document.getElementById("am");
 	var pm = document.getElementById("pm");
+	var timeStyle = "twentyfour";
+	var hours = time[0];
+	var minutes = time[1];
+	var seconds = time[2];
+	var milliseconds = time[3];
 	var lightGreen = "#00FF74";
 	var darkGray = "#454545";
 	var period;
 
+	clockContainer.innerHTML = hours + ":" + minutes + ":" + seconds;
+	millisecondContainer.innerHTML = milliseconds;
 
+	if(hours < 12){
+		var period = "am";
+	}
+	else{
+		var period = "pm";
+	};
 
-	clockContainer.innerHTML = time[0] + ":" + time[1] + ":" + time[2];
-	millisecondContainer.innerHTML = time[3];
+	function hoursChange(element){
+		if(element.getAttribute("hours") === "twentyfour"){
+			timeStyle = "twelve";
+			element.setAttribute("hours", timeStyle);
+			element.innerHTML = "twelve hour";
+
+			//SET DISPLAY AND STYLE BASED ON CLOCK MODE/ACTUAL TIME
+			if(period === "pm"){
+				pm.style.color = lightGreen;
+				am.style.color = darkGray;
+			}
+			else{
+				am.style.color = lightGreen;
+				pm.style.color = darkGray;
+			};
+		}
+		else{
+			timeStyle = "twentyfour";
+			element.setAttribute("hours", timeStyle);element.innerHTML = "twenty-four hour";
+			am.style.color = darkGray;
+			pm.style.color = darkGray;
+		};
+	};
 
 	hours_change_button.onclick = function(){
-		
+		hoursChange(this);
 	};
 
 	// window.setInterval(function(){
