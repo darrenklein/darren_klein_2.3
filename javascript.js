@@ -122,13 +122,11 @@
 var clockContainer = document.getElementById("clock");
 
 var loadClock = function(time){
-	
-
 	clockContainer.innerHTML = time;
 
-	// window.setInterval(function(){
-	// 	loadClock(getTime());
-	// }, 1);
+	window.setInterval(function(){
+		loadClock(getTime());
+	}, 1);
 };
 
 var getTime = function(){
@@ -138,20 +136,30 @@ var getTime = function(){
 	var seconds = date.getSeconds();
 	var milliseconds = date.getMilliseconds();
 
-	function buildTime(hours, minutes, seconds){
+	function buildTime(hours, minutes, seconds, milliseconds){
 		for(i = 0; i < arguments.length; i++){
-			if(arguments[i].toString().length === 1){
-				arguments[i] = "0" + arguments[i];
+			//LEADING ZEROS FOR MILLISECONDS
+			if(i === arguments.length - 1){
+				if(arguments[i].toString().length === 1){
+					arguments[i] = "00" + arguments[i];
+				}
+				else if(arguments[i].toString().length === 2){
+					arguments[i] = "0" + arguments[i];
+				};
+			}
+			//LEADING ZEROS FOR HOURS, MINUTES, SECONDS
+			else{
+				if(arguments[i].toString().length === 1){
+					arguments[i] = "0" + arguments[i];
+				};
 			};
 		};
-
+		
+		return "<div class='main_clock clock_part'>" + hours + ":" + minutes + ":" + seconds + "</div><div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
 	};
 
 
-	return buildTime(hours, minutes, seconds);
-	//var time = "<div class='main_clock clock_part'>" + hours + ":" + minutes + ":" + seconds + "</div><div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
-
-	//return time;
+	return buildTime(hours, minutes, seconds, milliseconds);
 };
 
 loadClock(getTime());
