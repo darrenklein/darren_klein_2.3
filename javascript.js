@@ -156,7 +156,6 @@ var loadClock = function(time){
 	// 	hours = hours;
 	// };
 
-	console.log(seconds)
 
 	function hoursChange(element){
 		if(element.getAttribute("hours") === "twentyfour"){
@@ -221,8 +220,7 @@ var getTime = function(){
 			};
 		};
 		
-		//return "<div class='main_clock clock_part'>" + hours + ":" + minutes + ":" + seconds + "</div><div class='millisecond clock_part' id='millisecond'>" + milliseconds + "</div>";
-		return [hours, minutes, seconds, milliseconds]
+		return [hours, minutes, seconds, milliseconds];
 	};
 
 	return buildTime(hours, minutes, seconds, milliseconds);
