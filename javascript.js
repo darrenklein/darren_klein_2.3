@@ -283,25 +283,76 @@ var clock = {
 			this.period = "pm";
 		};
 
+		if(this.timeStyle_button.timeStyle === "twelve" && hour === 0){
+			hour = 12;
+		}
+		else if(this.timeStyle_button.timeStyle === "twelve" && hour > 12){
+			hour = hour - 12;
+		};
+
+		this.buildTime(hour, minute, second, millisecond);
+	},
+	"buildTime": function(hour, minute, second, millisecond){
+		for(i = 0; i < arguments.length; i++){
+			if(i === arguments.length - 1){
+				if(arguments[i].toString().length === 1){
+					arguments[i] = "00" + arguments[i];
+				}
+				else if(arguments[i].toString().length === 2){
+					arguments[i] = "0" + arguments[i];
+				};
+			}
+			else{
+				if(arguments[i].toString().length === 1){
+					arguments[i] = "0" + arguments[i];
+				};
+			};
+		};
+
 		this.hour = hour;
 		this.minute = minute;
 		this.second = second;
 		this.millisecond = millisecond;
-
-		//return [hour, minute, second, millisecond];
 	},
 	"setTime": function(){
-
 		this.container.innerHTML = this.hour + ":" + this.minute + ":" + this.second;
 	},
 	"timeStyle_button": {
-		"timeStyle": "twentyfour"
+		"button": document.getElementById("timeStyle_button"),
+		"timeStyle": "twentyfour",
+		"timeStyle_change": function(button){
+			if(this.timeStyle === "twentyfour"){
+				this.timeStyle = "twelve";
+				button.innerHTML = "twelve hour";
+
+
+				// if(period === "pm"){
+				// 	pm.style.color = lightGreen;
+				// 	am.style.color = darkGray;
+				// }
+				// else{
+				// 	am.style.color = lightGreen;
+				// 	pm.style.color = darkGray;
+				// };
+			}
+			else{
+				this.timeStyle = "twentyfour";
+				button.innerHTML = "twenty-four hour";
+				// am.style.color = darkGray;
+				// pm.style.color = darkGray;
+			};	
+		}
 	}
 };
 
 
 
 clock.setTime(clock.getTime());
+console.log(clock)
+clock.timeStyle_button.button.onclick = function(){
+	clock.timeStyle_button.timeStyle_change(this);
+};
+
 
 // window.setInterval(function(){
 // 	clock.getTime();
