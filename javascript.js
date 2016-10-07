@@ -3,8 +3,6 @@ var clock = {
 	"millisecondContainer": document.getElementById("millisecond"),
 	"am": document.getElementById("am"),
 	"pm": document.getElementById("pm"),
-	"lightGreen": "#00FF74",
-	"darkGray": "#454545",
 	"getTime": function(){
 		var date = new Date();
 		var hour = date.getHours();
@@ -61,24 +59,23 @@ var clock = {
 				button.innerHTML = "twelve hour";
 
 				if(clock.period === "pm"){
-					clock.pm.style.color = clock.lightGreen;
-					clock.am.style.color = clock.darkGray;
+					clock.pm.classList.add("illuminated");
+					clock.am.classList.remove("illuminated");
 				}
 				else{
-					clock.am.style.color = clock.lightGreen;
-					clock.pm.style.color = clock.darkGray;
+					clock.am.classList.add("illuminated");
+					clock.pm.classList.remove("illuminated");
 				};
 			}
 			else{
 				this.timeStyle = "twentyfour";
 				button.innerHTML = "twenty-four hour";
-				clock.am.style.color = clock.darkGray;
-				clock.pm.style.color = clock.darkGray;
+				clock.am.classList.remove("illuminated");
+				clock.pm.classList.remove("illuminated");
 			};	
 		}
 	}
 };
-
 
 clock.setTime(clock.getTime());
 

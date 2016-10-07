@@ -56,3 +56,7 @@ button:hover{
 	font-size: 3vw;
 	margin-left: 2vw;
 }
+
+.illuminated{
+	color: #00FF74;
+}
