@@ -122,6 +122,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var loadClock = function(time){
 	var clockContainer = document.getElementById("clock");
 	var millisecondContainer = document.getElementById("millisecond");
@@ -189,10 +209,15 @@ var loadClock = function(time){
 		hoursChange(this);
 	};
 
-	// window.setInterval(function(){
-	// 	loadClock(getTime());
-	// }, 1);
+	window.setInterval(function(){
+		loadClock(getTime());
+	}, 1);
 };
+
+
+
+
+
 
 var getTime = function(){
 	var date = new Date();
