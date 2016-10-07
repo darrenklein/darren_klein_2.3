@@ -268,6 +268,7 @@
 
 //AS AN OBJECT...
 var clock = {
+	"container": document.getElementById("clock"),
 	"getTime": function(){
 		var date = new Date();
 		var hour = date.getHours();
@@ -286,11 +287,23 @@ var clock = {
 		this.minute = minute;
 		this.second = second;
 		this.millisecond = millisecond;
+
+		//return [hour, minute, second, millisecond];
+	},
+	"setTime": function(){
+
+		this.container.innerHTML = this.hour + ":" + this.minute + ":" + this.second;
 	},
 	"timeStyle_button": {
 		"timeStyle": "twentyfour"
 	}
 };
 
-clock.getTime();
-console.log(clock);
+
+
+clock.setTime(clock.getTime());
+
+// window.setInterval(function(){
+// 	clock.getTime();
+// 	console.log(clock)
+// }, 1000);
