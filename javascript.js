@@ -15,11 +15,28 @@ var clock = {
 			this.period = "am";
 		};
 
+		//SPECIAL CASES...
 		if(this.timeStyle_button.timeStyle === "twelve" && hour === 0){
 			hour = 12;
+			clock.am.classList.add("illuminated");
+			clock.pm.classList.remove("illuminated");
 		}
 		else if(this.timeStyle_button.timeStyle === "twelve" && hour > 12){
 			hour = hour - 12;
+			clock.am.classList.remove("illuminated");
+			clock.pm.classList.add("illuminated");
+		}
+		else if(this.timeStyle_button.timeStyle === "twelve" && hour < 12){
+			clock.am.classList.add("illuminated");
+			clock.pm.classList.remove("illuminated");
+		}
+		else if(this.timeStyle_button.timeStyle === "twelve" && hour === 12){
+			clock.am.classList.remove("illuminated");
+			clock.pm.classList.add("illuminated");
+		}
+		else{
+			clock.am.classList.remove("illuminated");
+			clock.pm.classList.remove("illuminated");
 		};
 
 		this.buildTime(hour, minute, second, millisecond);
