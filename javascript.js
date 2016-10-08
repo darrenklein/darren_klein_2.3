@@ -1,6 +1,8 @@
+var clockContainer = document.getElementById("clock");
+var millisecondContainer = document.getElementById("millisecond");
+var timeStyle_button = document.getElementById("timeStyle_button");
+
 var clock = {
-	//"container": document.getElementById("clock"),
-	//"millisecondContainer": document.getElementById("millisecond"),
 	"am": document.getElementById("am"),
 	"pm": document.getElementById("pm"),
 	"getTime": function(){
@@ -60,11 +62,8 @@ var clock = {
 	},
 	"setTime": function(){
 		return [this.hour + ":" + this.minute + ":" + this.second, this.millisecond];
-		// this.container.innerHTML = this.hour + ":" + this.minute + ":" + this.second;
-		// this.millisecondContainer.innerHTML = this.millisecond;
 	},
 	"timeStyle_button": {
-		"button": document.getElementById("timeStyle_button"),
 		"timeStyle": "twentyfour",
 		"timeStyle_change": function(button){
 			if(this.timeStyle === "twentyfour"){
@@ -90,14 +89,15 @@ var clock = {
 	}
 };
 
-document.getElementById("clock").innerHTML = clock.setTime(clock.getTime())[0];
-document.getElementById("millisecond").innerHTML = clock.setTime(clock.getTime())[1];
 
-clock.timeStyle_button.button.onclick = function(){
+clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
+millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
+
+timeStyle_button.onclick = function(){
 	clock.timeStyle_button.timeStyle_change(this);
 };
 
 window.setInterval(function(){
-	document.getElementById("clock").innerHTML = clock.setTime(clock.getTime())[0];
-	document.getElementById("millisecond").innerHTML = clock.setTime(clock.getTime())[1];
+	clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
+	millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
 }, 1);
