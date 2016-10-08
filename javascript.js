@@ -1,6 +1,6 @@
 var clock = {
-	"container": document.getElementById("clock"),
-	"millisecondContainer": document.getElementById("millisecond"),
+	//"container": document.getElementById("clock"),
+	//"millisecondContainer": document.getElementById("millisecond"),
 	"am": document.getElementById("am"),
 	"pm": document.getElementById("pm"),
 	"getTime": function(){
@@ -59,8 +59,9 @@ var clock = {
 		this.millisecond = millisecond;
 	},
 	"setTime": function(){
-		this.container.innerHTML = this.hour + ":" + this.minute + ":" + this.second;
-		this.millisecondContainer.innerHTML = this.millisecond;
+		return [this.hour + ":" + this.minute + ":" + this.second, this.millisecond];
+		// this.container.innerHTML = this.hour + ":" + this.minute + ":" + this.second;
+		// this.millisecondContainer.innerHTML = this.millisecond;
 	},
 	"timeStyle_button": {
 		"button": document.getElementById("timeStyle_button"),
@@ -89,12 +90,14 @@ var clock = {
 	}
 };
 
-clock.setTime(clock.getTime());
+document.getElementById("clock").innerHTML = clock.setTime(clock.getTime())[0];
+document.getElementById("millisecond").innerHTML = clock.setTime(clock.getTime())[1];
 
 clock.timeStyle_button.button.onclick = function(){
 	clock.timeStyle_button.timeStyle_change(this);
 };
 
 window.setInterval(function(){
-	clock.setTime(clock.getTime());
+	document.getElementById("clock").innerHTML = clock.setTime(clock.getTime())[0];
+	document.getElementById("millisecond").innerHTML = clock.setTime(clock.getTime())[1];
 }, 1);
