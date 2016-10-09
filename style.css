@@ -32,9 +32,17 @@ button:hover{
 	width: 90%;
 	margin: 0 auto;
 	padding: 38px;
+	position: relative;
 }
 
-.clock_container{
+#date_container{
+	position: absolute;
+	font-size: 3vh;
+	left: 1vw;
+	top: 1vw;
+}
+
+#clock_container{
 	width: 100%;
 }
 

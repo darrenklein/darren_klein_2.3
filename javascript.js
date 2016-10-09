@@ -1,6 +1,7 @@
 var container = {
 	"clockContainer": document.getElementById("clock"),
 	"millisecondContainer": document.getElementById("millisecond"),
+	"dateContainer": document.getElementById("date_container"),
 	"timeStyle_button": document.getElementById("timeStyle_button"),
 	"am": document.getElementById("am"),
 	"pm": document.getElementById("pm")
@@ -9,6 +10,7 @@ var container = {
 var clock = {
 	"getTime": function(){
 		var date = new Date();
+		this.day = date.toDateString();
 		var hour = date.getHours();
 		var minute = date.getMinutes();
 		var second = date.getSeconds();
@@ -56,14 +58,13 @@ var clock = {
 				};
 			};
 		};
-
 		this.hour = hour;
 		this.minute = minute;
 		this.second = second;
 		this.millisecond = millisecond;
 	},
 	"setTime": function(){
-		return [this.hour + ":" + this.minute + ":" + this.second, this.millisecond];
+		return [this.hour + ":" + this.minute + ":" + this.second, this.millisecond, this.day];
 	},
 	"timeStyle_button": {
 		"timeStyle": "twentyfour",
@@ -91,9 +92,6 @@ var clock = {
 	}
 };
 
-container.clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
-container.millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
-
 container.timeStyle_button.addEventListener("click", function(){
 	clock.timeStyle_button.timeStyle_change(this)
 });
@@ -101,4 +99,5 @@ container.timeStyle_button.addEventListener("click", function(){
 window.setInterval(function(){
 	container.clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
 	container.millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
+	container.dateContainer.innerHTML = clock.setTime(clock.getTime())[2]
 }, 1);
