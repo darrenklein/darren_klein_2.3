@@ -1,10 +1,12 @@
-var clockContainer = document.getElementById("clock");
-var millisecondContainer = document.getElementById("millisecond");
-var timeStyle_button = document.getElementById("timeStyle_button");
+var container = {
+	"clockContainer": document.getElementById("clock"),
+	"millisecondContainer": document.getElementById("millisecond"),
+	"timeStyle_button": document.getElementById("timeStyle_button"),
+	"am": document.getElementById("am"),
+	"pm": document.getElementById("pm")
+};
 
 var clock = {
-	"am": document.getElementById("am"),
-	"pm": document.getElementById("pm"),
 	"getTime": function(){
 		var date = new Date();
 		var hour = date.getHours();
@@ -22,17 +24,17 @@ var clock = {
 				if(hour === 0){
 					var hour = 12;
 				};
-				clock.am.classList.add("illuminated");
-				clock.pm.classList.remove("illuminated");
+				am.classList.add("illuminated");
+				pm.classList.remove("illuminated");
 			}
 			else if(hour > 12){
 				var hour = hour - 12;
-				clock.am.classList.remove("illuminated");
-				clock.pm.classList.add("illuminated");
+				am.classList.remove("illuminated");
+				pm.classList.add("illuminated");
 			}
 			else{
-				clock.am.classList.remove("illuminated");
-				clock.pm.classList.add("illuminated");
+				am.classList.remove("illuminated");
+				pm.classList.add("illuminated");
 			};
 		};
 
@@ -71,33 +73,32 @@ var clock = {
 				button.innerHTML = "twelve hour";
 
 				if(clock.period === "pm"){
-					clock.pm.classList.add("illuminated");
-					clock.am.classList.remove("illuminated");
+					pm.classList.add("illuminated");
+					am.classList.remove("illuminated");
 				}
 				else{
-					clock.am.classList.add("illuminated");
-					clock.pm.classList.remove("illuminated");
+					am.classList.add("illuminated");
+					pm.classList.remove("illuminated");
 				};
 			}
 			else{
 				this.timeStyle = "twentyfour";
 				button.innerHTML = "twenty-four hour";
-				clock.am.classList.remove("illuminated");
-				clock.pm.classList.remove("illuminated");
+				am.classList.remove("illuminated");
+				pm.classList.remove("illuminated");
 			};	
 		}
 	}
 };
 
+container.clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
+container.millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
 
-clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
-millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
-
-timeStyle_button.onclick = function(){
+container.timeStyle_button.onclick = function(){
 	clock.timeStyle_button.timeStyle_change(this);
 };
 
 window.setInterval(function(){
-	clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
-	millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
+	container.clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
+	container.millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
 }, 1);
