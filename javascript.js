@@ -94,9 +94,9 @@ var clock = {
 container.clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
 container.millisecondContainer.innerHTML = clock.setTime(clock.getTime())[1];
 
-container.timeStyle_button.onclick = function(){
-	clock.timeStyle_button.timeStyle_change(this);
-};
+container.timeStyle_button.addEventListener("click", function(){
+	clock.timeStyle_button.timeStyle_change(this)
+});
 
 window.setInterval(function(){
 	container.clockContainer.innerHTML = clock.setTime(clock.getTime())[0];
